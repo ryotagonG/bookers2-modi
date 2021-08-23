@@ -7,3 +7,7 @@
 
 <%= @book.title %>
 <%= @book.body %>
+
+<% if @book.user.id == current_user.id %>
+    <%= link_to "Edit", edit_book_path(@book) %>
+<% end %>
