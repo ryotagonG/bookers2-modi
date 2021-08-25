@@ -1,10 +1,6 @@
-<h2>User info</h2>
+<%= render "users/left", user: @user, book: @book %>
 
 <h2>Books</h2>
-
-<%= @user.name %>
-<%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no-image.jpg" %>
-<%= @user.introduction %>
 
 <% if @user.id == current_user.id %>
   <%= link_to "編集", edit_user_path(@user) %>
@@ -12,12 +8,11 @@
   <%= link_to "マイページ", user_path(current_user) %>
 <% end %>
 
-<h1>New Book </h1>
-
-<%= form_with model:@book, local:true do |f| %>
-  <label>Title</label>
-  <%= f.text_field :title, autofocus: true %>
-  <label>Opinion</label>
-  <%= f.text_area :body, autofocus: true %>
-<%= f.submit "Create Book" %>
+<% @user.books.each do |book| %>
+<%= attachment_image_tag book.user, :profile_image, :fill, 30, 30, fallback: "no-image.jpg", size:"30x30" %>
+<%= link_to book_path(book) do %>
+<%= book.title %>
 <% end %>
+<%= book.body %>
+<% end %>
+

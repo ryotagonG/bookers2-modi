@@ -1,20 +1,10 @@
-<h2>User info</h2>
+<%= render "users/left", user: @user, book: @book %>
 
 <h2>Users</h2>
 
-
 <% @users.each do |user| %>
-<%= attachment_image_tag user, :profile_image, :fill, 60, 60, fallback: "no-image.jpg" %>
+<%= attachment_image_tag user, :profile_image, :fill, 30, 30, fallback: "no-image.jpg", size:"30x30" %>
 <%= user.name %>
 <%= link_to "show", user_path(user) %>
 <% end %>
 
-<h1>New Book </h1>
-
-<%= form_with model:@book, local:true do |f| %>
-  <label>Title</label>
-  <%= f.text_field :title, autofocus: true %>
-  <label>Opinion</label>
-  <%= f.text_area :body, autofocus: true %>
-<%= f.submit "Create Book" %>
-<% end %>
