@@ -2,12 +2,6 @@
 
 <h2>Books</h2>
 
-<% if @user.id == current_user.id %>
-  <%= link_to "編集", edit_user_path(@user) %>
-<% else %>
-  <%= link_to "マイページ", user_path(current_user) %>
-<% end %>
-
 <% @user.books.each do |book| %>
 <%= attachment_image_tag book.user, :profile_image, :fill, 30, 30, fallback: "no-image.jpg", size:"30x30" %>
 <%= link_to book_path(book) do %>
