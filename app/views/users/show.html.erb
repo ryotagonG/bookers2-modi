@@ -1,12 +1,38 @@
-<%= render "users/left", user: @user, book: @book %>
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render "users/left", user: @user, book: @book %>
+    </div>
 
-<h2>Books</h2>
-
-<% @user.books.each do |book| %>
-<%= attachment_image_tag book.user, :profile_image, :fill, 30, 30, fallback: "no-image.jpg", size:"30x30" %>
-<%= link_to book_path(book) do %>
-<%= book.title %>
-<% end %>
-<%= book.body %>
-<% end %>
-
+<div class="col-md-8 offset-md-1">
+  <h2>Books</h2>
+<table class="table tabele-hover tabele-inverse">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Title</th>
+      <th>Opinion</th>
+      <th colspan=""></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @user.books.each do |book| %>
+    <tr>
+      <td>
+        <%= attachment_image_tag book.user, :profile_image, :fill, 30, 30, fallback: "no-image.jpg", size:"30x30", class: "attachment user profile_image" %>
+      </td>
+      <td>
+        <%= link_to book_path(book) do %>
+        <%= book.title %>
+        <% end %>
+      </td>
+      <td>
+        <%= book.body %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
